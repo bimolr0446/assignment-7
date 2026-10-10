@@ -1,4 +1,3 @@
-import React from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 interface HeadlineType {

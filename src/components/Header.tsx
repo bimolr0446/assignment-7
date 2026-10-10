@@ -1,10 +1,7 @@
 import Image from "next/image";
-import NavLinks from "./NavLinks";
+import DateDisplay from "./DateDisplay";
 
 const Header = () => {
-  const date = new Date().toLocaleDateString("bn-BD", {
-    dateStyle: "full",
-  });
   return (
     <section className="container mx-auto py-5">
       <div className="flex justify-between">
@@ -22,7 +19,7 @@ const Header = () => {
             <h2 className="md:text-5xl md:font-bold text-2xl sm:text-3xl font-semibold text-black">
               বাজার দর
             </h2>
-            <p className="lg:text-2xl md:text-xl ">{date}</p>
+           <DateDisplay></DateDisplay>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -37,8 +34,7 @@ const Header = () => {
           </div>
           <h2>Bimol Chandro roy</h2>
         </div>
-          </div>
-          <NavLinks></NavLinks>
+      </div>
     </section>
   );
 };
