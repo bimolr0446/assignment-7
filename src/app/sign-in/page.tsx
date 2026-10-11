@@ -17,28 +17,44 @@ const SignIn = () => {
 
     const { data, error } = await authClient.signIn.email({
       ...user,
-      callbackURL:'/'
+      callbackURL: "/",
     });
     if (data) {
       toast.success("Account Create Successful");
-      
     }
-    console.log(data);
     if (error) {
       toast.error(error.message);
     }
   };
   const githubSignIn = async () => {
-    const data = await authClient.signIn.social({
-      provider:'github'
-    })
-  }
-   const googleSignIn = async () => {
-     const data = await authClient.signIn.social({
-       provider:'google',
-     });
-     console.log(data);
-   };
+    const { data, error } = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("GitHub দিয়ে Sign In Successful!");
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const googleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Google দিয়ে Sign In Successful!");
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f0f5f0] px-4 py-7 sm:py-8">
       {/* Heading */}
@@ -118,9 +134,7 @@ const SignIn = () => {
           </button>
 
           {/* গিটহাব লগইন বাটন */}
-          <button
-            onClick={githubSignIn}
-            className="btn rounded-2xl">
+          <button onClick={githubSignIn} className="btn rounded-2xl">
             <FaGithub className="text-white" /> {/* গিটহাব আইকন */}
             <span>Sign in with GitHub</span>
           </button>

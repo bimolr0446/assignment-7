@@ -14,7 +14,7 @@ const NavLinksClient = ({ data }: NavLinksClientProps) => {
   return (
     <div className="my-4 flex flex-wrap md:gap-1 lg:gap-2 lg:text-lg md:text-xl text-sm">
       {data.map((nav) => {
-        const href = `/category/${nav.id}`;
+        const href = `/category/${nav.id}`
 
         const isActive = pathname === href || pathname.startsWith(`${href}/`);
 

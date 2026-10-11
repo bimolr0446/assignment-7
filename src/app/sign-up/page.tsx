@@ -20,19 +20,42 @@ const SignUpPage = () => {
       ...user,
     });
     if (data) {
-      toast.success('Account Create Successful')
-      router.push( "/sign-in")
+      toast.success("Account Create Successful");
+      router.push("/sign-in");
     }
     console.log(data);
     if (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
+  const githubSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("GitHub দিয়ে Sign In Successful!");
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+
   const googleSignIn = async () => {
-     const data = await authClient.signIn.social({
-       provider: "google",
-     });
-    console.log(data);
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Google দিয়ে Sign In Successful!");
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
   }
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f0f5f0] px-4 py-7 sm:py-8">
@@ -145,15 +168,13 @@ const SignUpPage = () => {
         {/* Social Login */}
         <div className="flex  gap-4 ">
           {/* গুগল লগইন বাটন */}
-          <button
-            onClick={googleSignIn}
-            className="btn  rounded-xl">
+          <button onClick={googleSignIn} className="btn  rounded-xl">
             <FaGoogle className="" /> {/* গুগল আইকন */}
             <span>Sign in with Google</span>
           </button>
 
           {/* গিটহাব লগইন বাটন */}
-          <button className="btn rounded-xl">
+          <button onClick={githubSignIn} className="btn rounded-xl">
             <FaGithub className="text-white" /> {/* গিটহাব আইকন */}
             <span>Sign in with GitHub</span>
           </button>

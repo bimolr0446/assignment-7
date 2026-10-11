@@ -6,7 +6,7 @@ import BannerLogo from "../../public/bazar-hero.png"
 
 const HeroBanner = () => {
     return (
-        <section className='md:flex justify-between bg-white p-4 rounded-4xl'>
+        <section className='md:flex justify-between bg-white p-4 md:rounded-4xl lg:rounded-2xl rounded-xl'>
             <div>
                 {/* Left Content */}
                 <div className="order-1">
