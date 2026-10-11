@@ -126,7 +126,7 @@ const SignIn = () => {
         </div>
 
         {/* Social Login */}
-        <div className="flex  gap-4 ">
+        <div className="flex md:flex-row lg:flex-row flex-col gap-4 ">
           {/* গুগল লগইন বাটন */}
           <button onClick={googleSignIn} className="btn rounded-2xl">
             <FaGoogle /> {/* গুগল আইকন */}
