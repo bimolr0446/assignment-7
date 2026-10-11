@@ -10,7 +10,7 @@ const NavLinks = async () => {
 
   return (
     <section className="">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <NavLinksClient data={data} />;
       </div>
     </section>

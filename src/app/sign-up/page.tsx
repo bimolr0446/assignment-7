@@ -28,7 +28,12 @@ const SignUpPage = () => {
       toast.error(error.message)
     }
   };
-
+  const googleSignIn = async () => {
+     const data = await authClient.signIn.social({
+       provider: "google",
+     });
+    console.log(data);
+  }
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f0f5f0] px-4 py-7 sm:py-8">
       {/* Heading */}
@@ -140,13 +145,15 @@ const SignUpPage = () => {
         {/* Social Login */}
         <div className="flex  gap-4 ">
           {/* গুগল লগইন বাটন */}
-          <button className="flex items-center gap-2 bg-white text-black border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-100">
+          <button
+            onClick={googleSignIn}
+            className="btn  rounded-xl">
             <FaGoogle className="" /> {/* গুগল আইকন */}
             <span>Sign in with Google</span>
           </button>
 
           {/* গিটহাব লগইন বাটন */}
-          <button className="flex items-center gap-1 bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800">
+          <button className="btn rounded-xl">
             <FaGithub className="text-white" /> {/* গিটহাব আইকন */}
             <span>Sign in with GitHub</span>
           </button>

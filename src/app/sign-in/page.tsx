@@ -17,15 +17,28 @@ const SignIn = () => {
 
     const { data, error } = await authClient.signIn.email({
       ...user,
+      callbackURL:'/'
     });
     if (data) {
       toast.success("Account Create Successful");
+      
     }
     console.log(data);
     if (error) {
       toast.error(error.message);
     }
   };
+  const githubSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider:'github'
+    })
+  }
+   const googleSignIn = async () => {
+     const data = await authClient.signIn.social({
+       provider:'google',
+     });
+     console.log(data);
+   };
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f0f5f0] px-4 py-7 sm:py-8">
       {/* Heading */}
@@ -99,13 +112,15 @@ const SignIn = () => {
         {/* Social Login */}
         <div className="flex  gap-4 ">
           {/* গুগল লগইন বাটন */}
-          <button className="flex items-center gap-2 bg-white text-black border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-100">
-            <FaGoogle className="" /> {/* গুগল আইকন */}
+          <button onClick={googleSignIn} className="btn rounded-2xl">
+            <FaGoogle /> {/* গুগল আইকন */}
             <span>Sign in with Google</span>
           </button>
 
           {/* গিটহাব লগইন বাটন */}
-          <button className="flex items-center gap-1 bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800">
+          <button
+            onClick={githubSignIn}
+            className="btn rounded-2xl">
             <FaGithub className="text-white" /> {/* গিটহাব আইকন */}
             <span>Sign in with GitHub</span>
           </button>
@@ -118,7 +133,7 @@ const SignIn = () => {
             href="/sign-up"
             className="font-semibold text-[#07883e] transition hover:text-[#066d33] hover:underline"
           >
-             সাইন আপ করুন
+            সাইন আপ করুন
           </Link>
         </p>
       </div>
