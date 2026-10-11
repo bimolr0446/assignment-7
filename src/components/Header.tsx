@@ -3,7 +3,7 @@ import DateDisplay from "./DateDisplay";
 
 const Header = () => {
   return (
-    <section className="container mx-auto py-5">
+    <section className="container mx-auto px-2  py-6 text-[#26332b] sm:px-6 lg:px-10">
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <div className="bg-green-800  p-5 text-center rounded-2xl">
@@ -19,7 +19,7 @@ const Header = () => {
             <h2 className="md:text-5xl md:font-bold text-2xl sm:text-3xl font-semibold text-black">
               বাজার দর
             </h2>
-           <DateDisplay></DateDisplay>
+            <DateDisplay></DateDisplay>
           </div>
         </div>
         <div className="flex items-center gap-2">

@@ -1,3 +1,4 @@
+import { ProductType } from "@/types/type";
 import React from "react";
 
 const ProductDetailPage = async ({
@@ -7,10 +8,10 @@ const ProductDetailPage = async ({
 }) => {
   const { productId } = await params;
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${productId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
   );
-    const product = await res.json();
-    
+  const product: ProductType = await res.json();
+
   const formatNumber = (value: number) =>
     new Intl.NumberFormat("bn-BD", {
       maximumFractionDigits: 2,
@@ -20,12 +21,11 @@ const ProductDetailPage = async ({
 
   const maxPrice = Math.max(...product.markets.map((market) => market.max));
   const changeAmount = product.today - product.yesterday;
-  console.log(product);
 
   return (
-    <div>
-      <section className="min-h-screen bg-[#f0f5f0] px-4 py-6 text-[#26332b] sm:px-6 lg:px-10">
-        <div className="mx-auto max-w-6xl space-y-4">
+    <section className="bg-[#f0f5f0] py-4">
+      <section className="container mx-auto">
+        <div className="space-y-4">
           {/* Product Header */}
           <section className="flex items-center justify-between gap-4 rounded-xl border border-[#e0e9e0] bg-[#fbfdfb] p-4 sm:p-6">
             <div className="flex min-w-0 items-center gap-3 sm:gap-4">
@@ -208,7 +208,7 @@ const ProductDetailPage = async ({
           </section>
         </div>
       </section>
-    </div>
+    </section>
   );
 };
 

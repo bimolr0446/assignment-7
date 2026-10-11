@@ -1,13 +1,17 @@
+import HeroBanner from "@/components/HeroBanner";
 import ProductList from "@/components/ProductList";
 
 export default function Home() {
   return (
-    <section className="container mx-auto px-4 py-6">
-      <ProductList type="up" />
+    <section className="bg-[#f0f5f0]">
+      <section className="container mx-auto  py-2 ">
+        <HeroBanner></HeroBanner>
+        <ProductList type="up" />
 
-      <ProductList type="down" />
+        <ProductList type="down" />
 
-      <ProductList type="all" />
+        <ProductList type="all" />
+      </section>
     </section>
   );
 }

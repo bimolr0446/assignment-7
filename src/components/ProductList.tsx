@@ -1,17 +1,7 @@
+import { ProductType } from "@/types/type";
 import Link from "next/link";
 
-interface ProductType {
-  id: number;
-  nameBn: string;
-  categoryIcon: string;
-  today: number;
-  unit: string;
-  image: string;
-  change: {
-    dir: "up" | "down" | "flat";
-    pct: number;
-  };
-}
+
 
 interface ProductListProps {
   type: "up" | "down" | "all";
@@ -19,14 +9,15 @@ interface ProductListProps {
 
 const ProductList = async ({ type }: ProductListProps) => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
   );
 
   if (!res.ok) {
     throw new Error("Product fetch failed");
   }
 
-    const products: ProductType[] = await res.json();
+  const products: ProductType[] = await res.json();
+  
     
      const formatNumber = (value: number) =>
        new Intl.NumberFormat("bn-BD", {

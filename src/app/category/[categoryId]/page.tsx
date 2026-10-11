@@ -1,82 +1,50 @@
-import ProductList from '@/components/ProductList';
-import Link from 'next/link';
-import React from 'react';
+import ProductSort from "@/components/ProductSort";
+import { ProductType } from "@/types/type";
 
-const CategoryDetailsPage = async ({ params }: { params: { categoryId: string } }) => {
-    const { categoryId } = await params
-    const res = await fetch(
-      `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
-    );
-    const categoryData = await res.json()
-    console.log(categoryData);
 
-    const formatNumber = (value: number) =>
-      new Intl.NumberFormat("bn-BD", {
-        maximumFractionDigits: 2,
-      }).format(value);
-    
-    return (
-      <div>
-        <h2>Category Detail page</h2>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {categoryData.map((product) => (
-            <Link href={`/product/${product.id}`} key={product.id}>
-              <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-2xl">
-                    {product.image}
-                  </div>
+const CategoryDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ categoryId: string }>;
+}) => {
+  const { categoryId } = await params;
 
-                  <div>
-                    <h3 className="font-bold text-gray-900">
-                      {product.nameBn}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      প্রতি{" "}
-                      {product.unit === "kg"
-                        ? "কেজি"
-                        : product.unit === "litre"
-                          ? "লিটার"
-                          : product.unit === "piece"
-                            ? "পিস"
-                            : product.unit === "dozen"
-                              ? "ডজন"
-                              : product.unit}{" "}
-                    </p>
-                  </div>
-                </div>
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
+  );
 
-                <div className="mt-4 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-500">আজকের দাম</p>
-                    <p className="text-xl font-bold text-gray-900">
-                      {formatNumber(product.today)} টাকা
-                    </p>
-                  </div>
+  const categoryData: ProductType[] = await res.json();
 
-                  <span
-                    className={`rounded-full px-3 py-2 text-xs font-semibold ${
-                      product.change.dir === "up"
-                        ? "bg-red-50 text-red-600"
-                        : product.change.dir === "down"
-                          ? "bg-green-50 text-green-600"
-                          : "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    {product.change.dir === "up"
-                      ? "▲"
-                      : product.change.dir === "down"
-                        ? "▼"
-                        : "—"}{" "}
-                    {formatNumber(product.change.pct)}%
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+  const formatNumber = (value: number) =>
+    new Intl.NumberFormat("bn-BD", {
+      maximumFractionDigits: 2,
+    }).format(value);
+
+  const categoryName = categoryData[0]?.categoryNameBn || "বাজারদর";
+
+  return (
+    <main className="container mx-auto">
+      <div className="mt-10 ">
+        {/* Category Header */}
+        <section className="flex items-center gap-3 rounded-xl border border-[#e2eae4] bg-[#fafcfb] px-3 py-4 shadow-sm sm:px-4">
+          <div className="flex md:h-20 h-10 md:w-20 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef2ee] text-2xl">
+            {categoryData[0]?.categoryIcon || "🛒"}
+          </div>
+
+          <div>
+            <h1 className="text-lg lg:text-2xl md:text-xl font-bold text-[#26372c]">{categoryName}</h1>
+
+            <p className="text-xs md:text-sm lg:text-xl text-[#89938b]">
+              {formatNumber(categoryData.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
+            </p>
+          </div>
+        </section>
+
+        {/* Functional Sorting and Product Cards */}
+        <ProductSort products={categoryData} />
       </div>
-    );
+    </main>
+  );
 };
 
 export default CategoryDetailsPage;

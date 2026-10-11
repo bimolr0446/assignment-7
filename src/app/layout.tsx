@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import NavLinks from "@/components/NavLinks";
 import Marquee from "@/components/Marquee";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <NavLinks></NavLinks>
         <Marquee></Marquee>
         <main>{children}</main>
+        <ToastContainer />
       </body>
     </html>
   );
