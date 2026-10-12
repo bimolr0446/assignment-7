@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header></Header>
         <NavLinks></NavLinks>
         <Marquee></Marquee>
-        <main>{children}</main>
+        <main >{children}</main>
         <Footer></Footer>
         <ToastContainer />
       </body>

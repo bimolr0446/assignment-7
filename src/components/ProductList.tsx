@@ -45,7 +45,7 @@ const ProductList = async ({ type }: ProductListProps) => {
         : "সব পণ্য";
 
   return (
-    <section className="mt-8">
+    <section className="mt-8 ">
       <h2 className="my-4 text-xl font-bold text-black">
         {type === "up" && <span className="text-red-600">▲ </span>}
         {type === "down" && <span className="text-green-600">▼ </span>}

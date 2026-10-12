@@ -29,7 +29,7 @@ if (!categoryData || categoryData.length === 0) {
     <main className="container mx-auto">
       <div className="mt-10 px-4">
         {/* Category Header */}
-        <section className="flex items-center gap-3 rounded-xl border border-[#e2eae4] bg-[#fafcfb] px-3 py-4 shadow-sm sm:px-4">
+        <section className="flex items-center gap-3 rounded-xl border  border-[#e2eae4] bg-[#fafcfb] px-3 py-4 shadow-sm sm:px-4">
           <div className="flex md:h-20 h-10 md:w-20 w-10 shrink-0 items-center justify-center rounded-full bg-[#eef2ee] text-2xl">
             {categoryData[0]?.categoryIcon || "🛒"}
           </div>

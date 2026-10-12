@@ -46,7 +46,7 @@ const ProductSort = ({ products }: ProductSortProps) => {
   return (
     <>
       {/* Sort Control */}
-      <div className="mt-3 flex items-center justify-end rounded-xl border border-[#e2eae4] bg-[#fafcfb] px-3 py-3 sm:px-4">
+      <div className="mt-3 flex items-center justify-end rounded-xl border border-[#e2eae4] bg-[#fafcfb] px-3 py-3 sm:px-4 ">
         
 
         <div className="flex items-center gap-2">
