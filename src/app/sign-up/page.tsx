@@ -31,7 +31,7 @@ const SignUpPage = () => {
   const githubSignIn = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "github",
-      callbackURL: "/sign-in",
+      callbackURL: "/",
     });
 
     if (data) {
