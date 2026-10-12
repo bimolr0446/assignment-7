@@ -16,22 +16,20 @@ const SignUpPage = () => {
       password: string;
     };
 
-    const { data, error } = await authClient.signUp.email({
+    const { error } = await authClient.signUp.email({
       ...user,
     });
-    if (data) {
-      toast.success("Account Create Successful");
-      router.push("/sign-in");
-    }
-    console.log(data);
     if (error) {
       toast.error(error.message);
     }
+
+    toast.success("Account Create Successful");
+    router.push("/sign-in");
   };
   const githubSignIn = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "github",
-      callbackURL: "/",
+      callbackURL: "/sign-in",
     });
 
     if (data) {
@@ -56,7 +54,7 @@ const SignUpPage = () => {
     if (error) {
       toast.error(error.message);
     }
-  }
+  };
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#f0f5f0] px-4 py-7 sm:py-8">
       {/* Heading */}

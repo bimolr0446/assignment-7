@@ -2,6 +2,7 @@ import Image from "next/image";
 import DateDisplay from "./DateDisplay";
 import { authClient } from "@/lib/auth-client";
 import AuthButtons from "./AuthButtons";
+import Link from "next/link";
 
 const Header = async () => {
   // const {getData} = await authClient.getSession()
@@ -11,15 +12,17 @@ const Header = async () => {
       <section className="container mx-auto px-2  py-6 text-[#26332b] sm:px-6 lg:px-10  ">
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">
-            <div className="bg-[#05893E]  p-5 text-center rounded-2xl">
-              <Image
-                className="mx-auto"
-                height={30}
-                width={30}
-                alt="Logo"
-                src="/logo-icon.png"
-              ></Image>
-            </div>
+            <Link href="/">
+              <div className="bg-[#05893E]  p-5 text-center rounded-2xl">
+                <Image
+                  className="mx-auto"
+                  height={30}
+                  width={30}
+                  alt="Logo"
+                  src="/logo-icon.png"
+                ></Image>
+              </div>
+            </Link>
             <div>
               <h2 className="md:text-5xl md:font-bold text-2xl sm:text-3xl font-semibold text-black">
                 বাজার দর
