@@ -1,12 +1,13 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
-  const router = useRouter();
+  
   const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -24,7 +25,8 @@ const SignUpPage = () => {
     }
 
     toast.success("Account Create Successful");
-    router.push("/sign-in");
+    // router.push("/sign-in");
+    redirect('/sign-in')
   };
   const githubSignIn = async () => {
     const { data, error } = await authClient.signIn.social({
