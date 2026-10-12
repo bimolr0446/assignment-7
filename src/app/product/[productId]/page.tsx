@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/type";
-import React from "react";
+import { notFound } from "next/navigation";
+
 
 const ProductDetailPage = async ({
   params,
@@ -11,6 +12,10 @@ const ProductDetailPage = async ({
     `https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
   );
   const product: ProductType = await res.json();
+
+  if (!product || !product.id) {
+    notFound();
+  }
 
   const formatNumber = (value: number) =>
     new Intl.NumberFormat("bn-BD", {

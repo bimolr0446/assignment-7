@@ -1,5 +1,6 @@
 import ProductSort from "@/components/ProductSort";
 import { ProductType } from "@/types/type";
+import { notFound } from "next/navigation";
 
 
 const CategoryDetailsPage = async ({
@@ -14,7 +15,9 @@ const CategoryDetailsPage = async ({
   );
 
   const categoryData: ProductType[] = await res.json();
-
+if (!categoryData || categoryData.length === 0) {
+  notFound();
+}
   const formatNumber = (value: number) =>
     new Intl.NumberFormat("bn-BD", {
       maximumFractionDigits: 2,
